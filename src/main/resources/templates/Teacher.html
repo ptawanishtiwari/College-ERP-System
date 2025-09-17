@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Teacher Dashboard</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		body {
+          background: linear-gradient(135deg, #0f0f1a, #1c0033);
+          color: #f8f9fa;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar,
+        .footer {
+          background: #4b0082;
+        }
+
+        .offcanvas {
+          width: 240px;
+          background: #2c003e;
+          color: #fff;
+        }
+
+        .offcanvas a {
+          color: #ddd;
+          transition: 0.3s;
+        }
+
+        .offcanvas a:hover {
+          color: #fff;
+          font-weight: bold;
+        }
+
+        h2 {
+          color: #bb86fc;
+          font-weight: bold;
+          text-shadow: 0 0 8px rgba(187, 134, 252, 0.7);
+        }
+
+        .card {
+          border: none;
+          border-radius: 15px;
+          background: #1e1e2f;
+          color: #e0e0e0;
+          box-shadow: 0 0 15px rgba(187, 134, 252, 0.4);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 0 25px rgba(187, 134, 252, 0.8);
+        }
+
+        .btn-custom {
+          background: #bb86fc;
+          border: none;
+          color: black;
+          font-weight: bold;
+        }
+
+        .btn-custom:hover {
+          background: #9b59b6;
+          color: white;
+        }
+
+        footer {
+          background: #4b0082;
+          color: #fff;
+          text-shadow: 0 0 5px black;
+        }
+	</style>
+</head>
+
+<body>
+<div id="successCard"
+	 class="alert alert-success text-center col-md-6 offset-md-3"
+	 th:if="${success}"
+	 style="display:none; border-radius:10px; box-shadow:0px 4px 6px rgba(0,0,0,0.2);">
+	<strong th:text="${success}"></strong>
+</div>
+<!-- Top Navbar -->
+<nav class="navbar navbar-dark">
+	<div class="container-fluid">
+		<button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+				aria-controls="sidebar">☰</button>
+		<span class="navbar-brand ms-2">⚡ AI Powered Teacher Dashboard</span>
+	</div>
+</nav>
+
+<!-- Sidebar -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
+	<div class="offcanvas-header">
+		<h5 class="offcanvas-title">Teacher Panel</h5>
+		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+	</div>
+	<div class="offcanvas-body">
+		<a href="#" class="nav-link mb-2">🏠 Dashboard</a>
+		<a href="TeaDetails" class="nav-link mb-2">👤 My Profile</a>
+		<a href="stuDetails" class="nav-link mb-2">👥 Students</a>
+		<a href="UploadMarks" class="nav-link mb-2">📊 Upload Marks</a>
+		<a href="GenerateQuetions" class="nav-link mb-2">📝 Assign Test</a>
+		<a href="uploadCopy" class="nav-link mb-2">📄 Upload Copies</a>
+		<a href="stuAttendence" class="nav-link mb-2">📄 Attendance</a>
+		<a href="/logout" class="nav-link">🚪 Logout</a>
+	</div>
+</div>
+
+<!-- Main Content -->
+<div class="container my-5">
+	<h2 class="mb-4 text-center">Welcome, Teacher 👨‍🏫</h2>
+
+	<div class="row g-4">
+		<div class="col-md-4">
+			<div class="card p-3 text-center">
+				<h5>👤 Profile Details</h5>
+				<p class="text-muted">View and update your personal information.</p>
+				<a href="TeacherProfile" class="btn btn-custom btn-sm">View Profile</a>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="card p-3 text-center">
+				<h5>👥 Students</h5>
+				<p class="text-muted">Check the number of students in your lectures.</p>
+				<a href="stuDetails" class="btn btn-custom btn-sm">View Students</a>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="card p-3 text-center">
+				<h5>📊 Upload Marks</h5>
+				<p class="text-muted">Upload marks for your subject with ease.</p>
+				<a href="UploadMarks" class="btn btn-custom btn-sm">Upload Marks</a>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="card p-3 text-center">
+				<h5>📝 Assign Test</h5>
+				<p class="text-muted">Schedule and assign tests to students.</p>
+				<a href="GenerateQuetions" class="btn btn-custom btn-sm">Assign Test</a>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="card p-3 text-center">
+				<h5>📄 Upload Checked Copies</h5>
+				<p class="text-muted">Upload evaluated copies for student access.</p>
+				<a href="uploadCopy" class="btn btn-custom btn-sm">Upload Copies</a>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="card p-3 text-center">
+				<h5>📄 Attendance Management</h5>
+				<p class="text-muted">Track and manage student attendance easily.</p>
+				<a href="stuAttendence" class="btn btn-custom btn-sm">Manage Attendance</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Footer -->
+<footer class="footer text-center py-3">
+	<p class="mb-0">© 2025 Teacher Dashboard | Designed by <b>Awanish Tiwari</b></p>
+</footer>
+
+<script th:inline="javascript">
+	document.addEventListener("DOMContentLoaded", function () {
+      let successMessage = /*[[${success}]]*/ null;
+
+      if(successMessage){
+        let card = document.getElementById("successCard");
+        card.style.display = "block";
+
+        // 3 सेकंड बाद card hide हो जाएगा
+        setTimeout(() => {
+          card.style.display = "none";
+        }, 3000);
+      }
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
